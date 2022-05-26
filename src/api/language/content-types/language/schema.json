@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "languages",
+  "info": {
+    "singularName": "language",
+    "pluralName": "languages",
+    "displayName": "Language",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "default": "Language"
+    },
+    "filter": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "bgColor": {
+      "type": "string",
+      "required": false,
+      "default": "241023"
+    },
+    "fontColor": {
+      "type": "string",
+      "default": "F5F5F5",
+      "required": false
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::project.project",
+      "inversedBy": "languages"
+    }
+  }
+}

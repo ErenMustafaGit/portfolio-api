@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "summarize": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "gitLink": {
+      "type": "string"
+    },
+    "projectLink": {
+      "type": "string"
+    },
+    "days": {
+      "type": "integer"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "medias": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "mappedBy": "projects"
+    },
+    "nbPersons": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "default": 0
+    }
+  }
+}
