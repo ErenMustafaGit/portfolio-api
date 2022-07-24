@@ -1,5 +1,7 @@
 const parse = require("pg-connection-string").parse;
 const config = parse(process.env.DATABASE_URL);
+// NEW CLOUDINARY_URL=cloudinary://574312755381879:2ogrm2aEuhY63krbtWg0YFjjNpA@ceycloud
+// cloudinary://123567726712929:kfFK747j1NSL7gd-pnXy1eEfH14@hjgwaqabt
 module.exports = ({ env }) => ({
   connection: {
     client: "postgres",
@@ -14,19 +16,5 @@ module.exports = ({ env }) => ({
       },
     },
     debug: false,
-  },
-  upload: {
-    config: {
-      provider: "cloudinary",
-      providerOptions: {
-        cloud_name: env("CLOUDINARY_NAME"),
-        api_key: env("CLOUDINARY_KEY"),
-        api_secret: env("CLOUDINARY_SECRET"),
-      },
-      actionOptions: {
-        upload: {},
-        delete: {},
-      },
-    },
   },
 });
