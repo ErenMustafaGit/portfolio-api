@@ -1,7 +1,5 @@
 const parse = require("pg-connection-string").parse;
 const config = parse(process.env.DATABASE_URL);
-// NEW CLOUDINARY_URL=cloudinary://574312755381879:2ogrm2aEuhY63krbtWg0YFjjNpA@ceycloud
-// cloudinary://123567726712929:kfFK747j1NSL7gd-pnXy1eEfH14@hjgwaqabt
 module.exports = ({ env }) => ({
   connection: {
     client: "postgres",
