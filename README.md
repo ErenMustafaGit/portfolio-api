@@ -1,3 +1,19 @@
+# Modification STRAPI (avec fly.io)
+Update the Strapi project
+Even if you deployed your Strapi app to production, you can still use your local environment as development environment. In order to make the local changes available to production you will need to re-deploy the Fly app.
+
+Following Quick Start Guide - Strapi Developer Docs 16, start by running Strapi in development mode.
+
+YARN
+
+yarn develop  
+NPM
+
+npm run develop
+After you make the changes and you are sure they work, re-deploy your app.
+
+fly deploy
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
