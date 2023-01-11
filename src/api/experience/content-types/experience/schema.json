@@ -58,7 +58,7 @@
       "type": "integer",
       "required": false
     },
-    "end_date": {
+    "end_year": {
       "pluginOptions": {
         "i18n": {
           "localized": true
