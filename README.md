@@ -12,7 +12,7 @@ NPM
 npm run develop
 After you make the changes and you are sure they work, re-deploy your app.
 
-fly deploy
+flyctl deploy
 
 # 🚀 Getting started with Strapi
 
