@@ -7,7 +7,14 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
 COPY package.json package-lock.json ./
 RUN npm install -g node-gyp
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --only=production
+
+RUN npm install --global sharp  # Installe sharp avant pour éviter les erreurs
+RUN npm config set fetch-retry-maxtimeout 600000 -g
+# Force l'utilisation des versions précompilées de sharp
+ENV SHARP_IGNORE_GLOBAL_LIBVIPS=1 
+
+RUN npm install --only=production --legacy-peer-deps
+
 ENV PATH=/opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
