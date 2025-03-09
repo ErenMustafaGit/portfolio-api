@@ -21,7 +21,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: portfolioapi
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
@@ -31,8 +31,8 @@ jobs:
           file: Dockerfile.prod
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/$portfolioapi:latest
+            ghcr.io/$portfolioapi:${{ github.sha }}
           labels: latest
 
   trigger-redeploy:
