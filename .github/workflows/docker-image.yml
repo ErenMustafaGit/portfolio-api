@@ -1,0 +1,44 @@
+name: Build, Deploy & Push Strapi
+
+on:
+  push:
+    branches:
+      - master  # Déclenchement sur main
+  workflow_dispatch:  # Permet un déclenchement manuel
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write  # Nécessaire pour pousser sur GHCR
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.prod
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+          labels: latest
+
+  trigger-redeploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger stack redeployment
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.DEPLOY_API_KEY }}" ${{ secrets.REDEPLOY_API_URL }}
