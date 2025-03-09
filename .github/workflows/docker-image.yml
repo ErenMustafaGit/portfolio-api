@@ -31,8 +31,8 @@ jobs:
           file: Dockerfile.prod
           push: true
           tags: |
-            ghcr.io/$portfolioapi:latest
-            ghcr.io/$portfolioapi:${{ github.sha }}
+            ghcr.io/portfolioapi:latest
+            ghcr.io/portfolioapi:${{ github.sha }}
           labels: latest
 
   trigger-redeploy:
