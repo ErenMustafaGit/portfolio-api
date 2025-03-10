@@ -19,8 +19,7 @@ RUN npm install --only=production --legacy-peer-deps
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
-RUN echo "DATABASE_URL=${DATABASE_URL}"
-RUN echo $DATABASE_URL
+RUN echo "DATABASE_URL=$(echo ${DATABASE_URL} | cut -c1-3)***" && test -n "$DATABASE_URL" || echo "⚠️ DATABASE_URL est vide !"
 
 ENV PATH=/opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
