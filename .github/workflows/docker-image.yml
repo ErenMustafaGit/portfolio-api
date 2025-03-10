@@ -34,6 +34,8 @@ jobs:
             ghcr.io/erenmustafagit/portfolio-api:latest
             ghcr.io/erenmustafagit/portfolio-api:${{ github.sha }}
           labels: latest
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
 
   trigger-redeploy:
     needs: build-and-push
